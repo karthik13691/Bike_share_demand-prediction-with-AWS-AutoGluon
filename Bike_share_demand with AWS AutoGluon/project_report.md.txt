@@ -1,0 +1,58 @@
+# Report: Predict Bike Sharing Demand with AutoGluon Solution
+#### KARTHIK PANNER SELVAM
+
+## Initial Training
+### What did you realize when you tried to submit your predictions? What changes were needed to the output of the predictor to submit your results?
+I had to replace the negative values to zero, as negative trip counts doesn't sound valid
+
+### What was the top ranked model that performed?
+WeightedEnsemble, NeuralNetMXNet, and LightGBM models were the top performing models 
+
+## Exploratory data analysis and feature creation
+### What did the exploratory analysis find and how did you add additional features?
+EDA showed that there was no missing values in the dataset.
+temp & atemp had gaussian distribution along with humidity.
+The target variable 'count' was itself positively skewed.
+casual and registered columns were missing in the test data.
+The datetime column is an object data type, still viewed as a numerical data by the model. So I split the datetime column into hour column.
+
+
+### How much better did your model preform after adding additional features and why do you think that is?
+spliting the datatime and adding the hour feature drastically improved the model performance since the bike share is not rented for long hours. So hour column plays an important role in predictions. Also, we could have the datetime split by year, month, day, and hour and used them as separate features to get a better model performance.
+
+## Hyper parameter tuning
+### How much better did your model preform after trying different hyper parameters?
+My model for this particular hyperparameter tuning didn't perform that well. It's rmse was larger than the model with added features.
+
+### If you were given more time with this dataset, where do you think you would spend more time?
+With more time, I could have definetly worked on feature engineering. And extracting new features would have improved the model performance very well.
+
+### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
+|model|time|max_base_models|max_base_models_per_type|score|
+|--|--|--|--|--|
+|initial|600|25|5|1.39588|
+|add_features|600|25|5|0.53298|
+|hpo|600|25|5|0.48618|
+
+### Create a line plot showing the top model score for the three (or more) training runs during the project.
+
+<img width="503" alt="score" src="https://user-images.githubusercontent.com/49963817/141466182-c2e76f44-c877-41a0-976a-4306a07ada8c.png">
+
+
+
+
+### Create a line plot showing the top kaggle score for the three (or more) prediction submissions during the project.
+
+TODO: Replace the image below with your own.
+
+<img width="503" alt="kaggle_score" src="https://user-images.githubusercontent.com/49963817/141466164-f0fae8ce-c288-41b0-98c5-d00b01b2608b.png">
+
+
+## Summary
+
+ML process starts with acquiring the data and performing EDA. From EDA we found out that the datetime is an important feature so we extracted hour from it. This had a great impact on the prediction of the demand.
+
+Neural network could have potentially outperformed other models if more time was invested in the training. But, based on our analysis we conclude that WeightedEnsemble, NeuralNetMXNet, and LightGBM are the best performers here.
+
+The AutoGluon model with default regression-model setting scored 1.39588 on Kaggle with our train data and rmse of -114.88. Then after adding the hour feature, the score improved to 0.53298 and rmse to -36.203112. If more time was alloted, we could perform feature engineering and get a better model performance.
+
