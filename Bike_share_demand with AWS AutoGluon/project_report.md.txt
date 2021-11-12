@@ -28,11 +28,11 @@ My model for this particular hyperparameter tuning didn't perform that well. It'
 With more time, I could have definetly worked on feature engineering. And extracting new features would have improved the model performance very well.
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
-|model|time|max_base_models|max_base_models_per_type|score|
+|model|learning_rate|num_epochs|dropout_prob|score|
 |--|--|--|--|--|
-|initial|600|25|5|1.39588|
-|add_features|600|25|5|0.53298|
-|hpo|600|25|5|0.48618|
+|initial|0.01|8|0|1.39588|
+|add_features|0.01|17|0|0.53298|
+|hpo|0.05|100|0.4|0.48618|
 
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
 
